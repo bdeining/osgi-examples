@@ -1,0 +1,5 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <bean id="textDataManager" class="org.codice.data.management.impl.TextDataManagement" init-method="init" />
+
+</blueprint>
