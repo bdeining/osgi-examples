@@ -1,0 +1,30 @@
+<blueprint default-activation="eager"
+               xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:cxf="http://cxf.apache.org/blueprint/core"
+               xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs">
+
+    <bean id="restServiceImpl" class="org.codice.rest.service.RestServiceImpl"/>
+
+    <jaxrs:server id="taskService" address="/restService">
+            <jaxrs:serviceBeans>
+                <ref component-id="restServiceImpl" />
+            </jaxrs:serviceBeans>
+            <jaxrs:features>
+                <cxf:logging />
+            </jaxrs:features>
+        </jaxrs:server>
+
+        <!-- Services -->
+<!--
+        <service interface="org.codice.rest.service.RestService" ref="restServiceImpl">
+            <service-properties>
+                <entry key="alias" value="service" />
+                <entry key="servlet-name" value="butt"/>
+            </service-properties>
+        </service>-->
+</blueprint>
+
+
+
+

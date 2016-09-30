@@ -52,6 +52,7 @@
         <module>data-management-api</module>
         <module>data-management-mysql</module>
         <module>data-management-text</module>
+        <module>rest-service</module>
     </modules>
 
     <repositories>

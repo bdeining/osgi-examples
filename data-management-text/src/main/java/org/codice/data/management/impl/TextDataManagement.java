@@ -14,7 +14,6 @@ public class TextDataManagement implements DataManager {
 
     public void init() {
         LOGGER.trace("Initializing {}", TextDataManagement.class.getName());
-        System.out.println("ass");
     }
 
     @Override
