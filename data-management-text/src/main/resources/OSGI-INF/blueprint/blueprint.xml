@@ -1,5 +1,13 @@
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
 
-    <bean id="textDataManager" class="org.codice.data.management.impl.TextDataManagement" init-method="init" />
+    <bean id="textDataManager" class="org.codice.data.management.impl.TextDataManagement" init-method="init">
+        <argument value="etc/temp.txt" />
+    </bean>
+
+    <service ref="textDataManager" interface="org.codice.data.management.DataManager">
+        <service-properties>
+            <entry key="name" value="dataManager"/>
+        </service-properties>
+    </service>
 
 </blueprint>

@@ -1,10 +1,12 @@
 <blueprint default-activation="eager"
-               xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
-               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-               xmlns:cxf="http://cxf.apache.org/blueprint/core"
-               xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs">
+           xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:cxf="http://cxf.apache.org/blueprint/core"
+           xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs">
 
-    <bean id="restServiceImpl" class="org.codice.rest.service.RestServiceImpl"/>
+    <reference id="textDataManager" interface="org.codice.data.management.DataManager" filter="(name=dataManager)"/>
+    <bean id="restServiceImpl" class="org.codice.rest.service.RestServiceImpl">
+        <argument ref="textDataManager"/>
+    </bean>
 
     <jaxrs:server id="taskService" address="/restService">
             <jaxrs:serviceBeans>
@@ -14,15 +16,6 @@
                 <cxf:logging />
             </jaxrs:features>
         </jaxrs:server>
-
-        <!-- Services -->
-<!--
-        <service interface="org.codice.rest.service.RestService" ref="restServiceImpl">
-            <service-properties>
-                <entry key="alias" value="service" />
-                <entry key="servlet-name" value="butt"/>
-            </service-properties>
-        </service>-->
 </blueprint>
 
 

@@ -9,7 +9,7 @@
     </parent>
 
     <artifactId>data-management-text</artifactId>
-    <packaging>bundle</packaging>
+    <packaging>jar</packaging>
     <name>Data Management Text</name>
 
     <dependencies>
@@ -25,21 +25,4 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <configuration>
-                    <instructions>
-                        <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-
-                        <Embed-Dependency>
-                            data-management-api
-                        </Embed-Dependency>
-                    </instructions>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

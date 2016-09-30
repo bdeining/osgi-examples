@@ -17,7 +17,7 @@ public class MySqlManagment implements DataManager {
     }
 
     @Override
-    public void insert() {
+    public void insert(String key, String value) {
         LOGGER.trace("Inserting Information");
     }
 

@@ -43,6 +43,11 @@
             <artifactId>cxf-rt-rs-client</artifactId>
             <version>3.1.7</version>
         </dependency>
+        <dependency>
+            <groupId>org.codice</groupId>
+            <artifactId>data-management-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -53,7 +58,6 @@
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-
                     </instructions>
                 </configuration>
             </plugin>

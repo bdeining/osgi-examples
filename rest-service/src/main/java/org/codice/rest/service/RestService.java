@@ -17,8 +17,8 @@ public interface RestService {
     String test(@PathParam("name") String name);
 
     @GET
-    @Path("/")
-    void insert(@PathParam("id") String id);
+    @Path("/insert/{entry}")
+    void insert(@PathParam("entry") String entry);
 
     @PUT
     @Path("/")

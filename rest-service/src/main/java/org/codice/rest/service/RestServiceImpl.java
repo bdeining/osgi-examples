@@ -1,5 +1,6 @@
 package org.codice.rest.service;
 
+import org.codice.data.management.DataManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,31 +8,25 @@ public class RestServiceImpl implements RestService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RestServiceImpl.class);
 
-    public RestServiceImpl() {
+    public DataManager dataManager;
 
-    }
-
-    @SuppressWarnings("rawtypes")
-    public void init() {
-
-        LOGGER.trace("Initializing {}", RestServiceImpl.class.getName());
-/*        JAXRSServerFactoryBean factory = new JAXRSServerFactoryBean();
-        factory.setAddress("http://localhost:8282/person");
-        //factory.setResourceClasses(PersonServiceImpl.class);
-        //factory.setResourceProvider(new SingletonResourceProvider(new PersonServiceImpl()));
-        factory.setProvider(new JAXBElementProvider<>());
-        Server server = factory.create();
-        server.start();*/
+    public RestServiceImpl(DataManager dataManager) {
+        this.dataManager = dataManager;
+        LOGGER.trace("Setting datamanger {}", dataManager);
     }
 
     @Override
     public String test(String name) {
-        return "tst" + name;
+        return "hello " + name;
     }
 
     @Override
-    public void insert(String id) {
-
+    public void insert(String entry) {
+        LOGGER.trace("{}", entry);
+        String[] entryArray = entry.split("-");
+        if(entryArray.length == 2) {
+            dataManager.insert(entryArray[0], entryArray[1]);
+        }
     }
 
     @Override
