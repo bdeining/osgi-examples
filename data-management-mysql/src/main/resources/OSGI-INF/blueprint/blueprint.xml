@@ -1,5 +1,15 @@
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
 
-    <bean id="dataManager" class="org.codice.data.management.impl.MySqlManagment" init-method="init" />
+    <bean id="dataManager" class="org.codice.data.management.impl.MySqlManagment" init-method="init">
+        <argument ref="dataSource"/>
+    </bean>
+
+    <reference id="dataSource" interface="javax.sql.DataSource"/>
+
+    <service interface="org.codice.data.management.DataManager" ref="dataManager">
+        <service-properties>
+            <entry key="name" value="mySqlDataManager"/>
+        </service-properties>
+    </service>
 
 </blueprint>
