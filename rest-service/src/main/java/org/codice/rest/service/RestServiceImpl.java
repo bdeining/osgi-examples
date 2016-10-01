@@ -12,7 +12,7 @@ public class RestServiceImpl implements RestService {
 
     public RestServiceImpl(DataManager dataManager) {
         this.dataManager = dataManager;
-        LOGGER.trace("Setting datamanger {}", dataManager);
+        //LOGGER.trace("Setting datamanager {}", dataManager);
     }
 
     @Override

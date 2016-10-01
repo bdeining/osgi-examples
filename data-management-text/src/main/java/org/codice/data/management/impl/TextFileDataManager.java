@@ -13,18 +13,25 @@ import org.codice.data.management.DataManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TextDataManagement implements DataManager {
+public class TextFileDataManager implements DataManager {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TextDataManagement.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TextFileDataManager.class);
 
     private File file;
 
-    public TextDataManagement(String filePath) {
+    public TextFileDataManager(String filePath) {
         file = new File(filePath);
+        if(!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                LOGGER.error("Unable to create file : {}", filePath);
+            }
+        }
     }
 
     public void init() {
-        LOGGER.trace("Initializing {}", TextDataManagement.class.getName());
+        LOGGER.trace("Initializing {}", TextFileDataManager.class.getName());
     }
 
     @Override
@@ -36,6 +43,8 @@ public class TextDataManagement implements DataManager {
                         (key + "-" + value + "\n").getBytes(),
                         StandardOpenOption.APPEND);
             }
+
+            // printTextFileContents();
         } catch (IOException e) {
             LOGGER.error("Unable to insert information.", e);
         }
@@ -89,5 +98,10 @@ public class TextDataManagement implements DataManager {
         List<String> lines = Files.readAllLines(file.toPath(), Charset.defaultCharset());
         return lines.stream().filter(line -> !line.contains(key)).collect(
                 Collectors.toList());
+    }
+
+    private void printTextFileContents() throws IOException {
+        List<String> lines = Files.readAllLines(file.toPath(), Charset.defaultCharset());
+        lines.stream().peek(line -> LOGGER.info("{}", line));
     }
 }

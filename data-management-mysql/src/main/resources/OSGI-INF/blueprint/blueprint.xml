@@ -1,6 +1,6 @@
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
 
-    <bean id="dataManager" class="org.codice.data.management.impl.MySqlManagment" init-method="init">
+    <bean id="dataManager" class="org.codice.data.management.impl.MySqlDataManager" init-method="init">
         <argument ref="dataSource"/>
     </bean>
 
