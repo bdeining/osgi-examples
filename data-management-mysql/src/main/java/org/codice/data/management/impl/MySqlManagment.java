@@ -23,13 +23,13 @@ public class MySqlManagment implements DataManager {
 
 
     @Override
-    public void update() {
+    public void update(String key, String value) {
         LOGGER.trace("Updating Information");
     }
 
 
     @Override
-    public void delete() {
+    public void delete(String key) {
         LOGGER.trace("Deleting Information");
     }
 }

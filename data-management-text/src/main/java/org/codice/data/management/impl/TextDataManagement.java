@@ -2,8 +2,12 @@ package org.codice.data.management.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.codice.data.management.DataManager;
 import org.slf4j.Logger;
@@ -27,21 +31,63 @@ public class TextDataManagement implements DataManager {
     public void insert(String key, String value) {
         LOGGER.trace("Inserting Information");
         try {
-            Files.write(file.toPath(),
-                    (key + "-" + value + "\n").getBytes(),
-                    StandardOpenOption.APPEND);
+            if (!doesKeyExistInFile(key)) {
+                Files.write(file.toPath(),
+                        (key + "-" + value + "\n").getBytes(),
+                        StandardOpenOption.APPEND);
+            }
         } catch (IOException e) {
             LOGGER.error("Unable to insert information.", e);
         }
     }
 
     @Override
-    public void update() {
+    public void update(String key, String value) {
         LOGGER.trace("Updating Information");
+        try {
+            Files.write(file.toPath(), changeValueOf(key, value), Charset.defaultCharset());
+        } catch (IOException e) {
+            LOGGER.error("Unable to update information.", e);
+        }
     }
 
     @Override
-    public void delete() {
-        LOGGER.trace("Deleting Information");
+    public void delete(String key) {
+        LOGGER.trace("Deleting Information {}", key);
+        try {
+            Files.write(file.toPath(), removeValueOf(key), Charset.defaultCharset());
+        } catch (IOException e) {
+            LOGGER.error("Unable to delete information", e);
+        }
+    }
+
+    private boolean doesKeyExistInFile(String key) throws IOException {
+        List<String> lines = Files.readAllLines(file.toPath(), Charset.defaultCharset());
+        for (String line : lines) {
+            if (line.contains(key)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private List<String> changeValueOf(String key, String value) throws IOException {
+        List<String> lines = Files.readAllLines(file.toPath(), Charset.defaultCharset());
+        List<String> newLines = new ArrayList<>();
+        for (String line : lines) {
+            if (line.contains(key)) {
+                newLines.add(key + "-" + value);
+            } else {
+                newLines.add(line);
+            }
+
+        }
+        return newLines;
+    }
+
+    private List<String> removeValueOf(String key) throws IOException {
+        List<String> lines = Files.readAllLines(file.toPath(), Charset.defaultCharset());
+        return lines.stream().filter(line -> !line.contains(key)).collect(
+                Collectors.toList());
     }
 }

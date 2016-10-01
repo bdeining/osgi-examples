@@ -13,19 +13,15 @@ import javax.ws.rs.core.MediaType;
 public interface RestService {
 
     @GET
-    @Path("/{name}") //Maps for the `hello/John` in the URL
-    String test(@PathParam("name") String name);
-
-    @GET
     @Path("/insert/{entry}")
     void insert(@PathParam("entry") String entry);
 
     @PUT
-    @Path("/")
-    void update(@PathParam("id") String id, String value);
+    @Path("/update/{entry}")
+    void update(@PathParam("entry") String entry);
 
     @POST
-    @Path("/")
-    void delete(String id);
+    @Path("/delete/{entry}")
+    void delete(@PathParam("entry") String key);
 }
 

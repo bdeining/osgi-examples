@@ -4,7 +4,7 @@ public interface DataManager {
 
     void insert(String key, String value);
 
-    void update();
+    void update(String key, String value);
 
-    void delete();
+    void delete(String key);
 }
