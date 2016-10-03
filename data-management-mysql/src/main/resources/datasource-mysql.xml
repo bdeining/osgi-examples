@@ -10,8 +10,6 @@ Then copy this file to the deploy folder
 
     <bean id="dataSource" class="com.mysql.jdbc.jdbc2.optional.MysqlDataSource">
         <property name="url" value="jdbc:h2:mem:mysql"/>
-<!--        <property name="user" value="test"/>
-        <property name="password" value="test"/>-->
     </bean>
 
     <service interface="javax.sql.DataSource" ref="dataSource">

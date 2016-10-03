@@ -3,8 +3,8 @@
            xmlns:cxf="http://cxf.apache.org/blueprint/core"
            xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs">
 
-    <reference id="textDataManager" interface="org.codice.data.management.DataManager" filter="(name=mySqlDataManager)"/>
-<!--    <reference id="textDataManager" interface="org.codice.data.management.DataManager" filter="(name=textDataManager)"/>-->
+<!--    <reference id="textDataManager" interface="org.codice.data.management.DataManager" filter="(name=mySqlDataManager)"/>-->
+    <reference id="textDataManager" interface="org.codice.data.management.DataManager" filter="(name=textDataManager)"/>
 
     <bean id="restServiceImpl" class="org.codice.rest.service.RestServiceImpl">
         <argument ref="textDataManager"/>
