@@ -10,18 +10,28 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.codice.data.management.DataManager;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Component(immediate = true, name = "DataManager", property = //
+        {"service.exported.interfaces=*", //
+                "service.exported.configs=org.apache.cxf.rs", //
+                "org.apache.cxf.rs.address=/data"} //
+)
 public class TextFileDataManager implements DataManager {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TextFileDataManager.class);
 
     private File file;
 
+    public TextFileDataManager() {
+        this("etc/dataStore.txt");
+    }
+
     public TextFileDataManager(String filePath) {
         file = new File(filePath);
-        if(!file.exists()) {
+        if (!file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {
@@ -96,12 +106,14 @@ public class TextFileDataManager implements DataManager {
 
     private List<String> removeValueOf(String key) throws IOException {
         List<String> lines = Files.readAllLines(file.toPath(), Charset.defaultCharset());
-        return lines.stream().filter(line -> !line.contains(key)).collect(
-                Collectors.toList());
+        return lines.stream()
+                .filter(line -> !line.contains(key))
+                .collect(Collectors.toList());
     }
 
     private void printTextFileContents() throws IOException {
         List<String> lines = Files.readAllLines(file.toPath(), Charset.defaultCharset());
-        lines.stream().peek(line -> LOGGER.info("{}", line));
+        lines.stream()
+                .peek(line -> LOGGER.info("{}", line));
     }
 }

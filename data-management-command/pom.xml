@@ -8,30 +8,21 @@
         <version>0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>data-management-text</artifactId>
     <packaging>bundle</packaging>
-    <name>Data Management Text</name>
+    <artifactId>data-management-command</artifactId>
+
+    <name>Data Management Command</name>
 
     <dependencies>
         <dependency>
             <groupId>org.codice</groupId>
             <artifactId>data-management-api</artifactId>
-            <version>${project.version}</version>
+            <version>0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.core</artifactId>
-            <version>5.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.compendium</artifactId>
-            <version>5.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.12</version>
+            <groupId>org.apache.karaf.shell</groupId>
+            <artifactId>org.apache.karaf.shell.console</artifactId>
+            <version>4.0.5</version>
         </dependency>
     </dependencies>
 
@@ -43,12 +34,14 @@
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-                        <Import-Package>*</Import-Package>
-                        <Private-Package>org.codice.data.management.impl</Private-Package>
-                        <DynamicImport-Package>
-                            org.apache.cxf.dosgi.dsw.qos,
-                            org.apache.cxf
-                        </DynamicImport-Package>
+                        <Karaf-Commands>*</Karaf-Commands>
+                        <Export-Package/>
+                        <Import-Package>
+                            org.apache.felix.service.command,
+                            org.apache.karaf.shell.commands,
+                            org.apache.karaf.shell.console,
+                            *
+                        </Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
