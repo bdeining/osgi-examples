@@ -6,6 +6,6 @@
         <property name="service.exported.interfaces">*</property>
         <property name="service.exported.configs">org.apache.cxf.rs</property>
         <property name="service.exported.intents">HTTP</property>
-        <property name="org.apache.cxf.rs.address">http://localhost:8181/data</property>
+        <property name="org.apache.cxf.rs.address">http://localhost:20002/data</property>
     </service-description>
 </service-descriptions>

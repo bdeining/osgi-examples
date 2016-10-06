@@ -19,11 +19,11 @@
             <artifactId>data-management-api</artifactId>
             <version>0.1-SNAPSHOT</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>org.apache.karaf.shell</groupId>
             <artifactId>org.apache.karaf.shell.console</artifactId>
-            <version>4.0.5</version>
-        </dependency>
+            <version>4.0.6</version>
+        </dependency>-->
     </dependencies>
 
     <build>
@@ -34,14 +34,14 @@
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
-                        <Karaf-Commands>*</Karaf-Commands>
+                        <!--<Karaf-Commands>*</Karaf-Commands>-->
                         <Export-Package/>
-                        <Import-Package>
+<!--                        <Import-Package>
                             org.apache.felix.service.command,
                             org.apache.karaf.shell.commands,
                             org.apache.karaf.shell.console,
                             *
-                        </Import-Package>
+                        </Import-Package>-->
                     </instructions>
                 </configuration>
             </plugin>

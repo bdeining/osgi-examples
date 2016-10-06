@@ -1,6 +1,5 @@
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
 
-    <!--
     <bean id="textDataManager" class="org.codice.data.management.impl.TextFileDataManager"
           init-method="init">
         <argument value="etc/dataStore.txt"/>
@@ -11,9 +10,8 @@
             <entry key="service.exported.interfaces" value="*"/>
             <entry key="name" value="textDataManager"/>
             <entry key="service.exported.configs" value="org.apache.cxf.rs"/>
-            <entry key="org.apache.cxf.rs.address" value="http://localhost:8181/data"/>
+            <entry key="org.apache.cxf.rs.address" value="http://localhost:20002/data"/>
         </service-properties>
     </service>
-    -->
 
 </blueprint>

@@ -14,11 +14,6 @@ import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Component(immediate = true, name = "DataManager", property = //
-        {"service.exported.interfaces=*", //
-                "service.exported.configs=org.apache.cxf.rs", //
-                "org.apache.cxf.rs.address=/data"} //
-)
 public class TextFileDataManager implements DataManager {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TextFileDataManager.class);
